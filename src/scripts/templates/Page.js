@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import { getPageBySlug } from 'reducers/pages'
+import { connect }        from 'react-redux'
+import { getPageBySlug }  from 'reducers/pages'
 
 const Page = ({pages, location: {pathname}}) => {
   const {title, content} = getPageBySlug(pages, pathname.slice(1, -1))
