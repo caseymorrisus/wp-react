@@ -1,6 +1,5 @@
 import { FETCH_PROJECTS } from 'ActionTypes'
-
-import { Map, List } from 'immutable'
+import { Map, List }      from 'immutable'
 
 const initialState = Map({
   projects: List(),

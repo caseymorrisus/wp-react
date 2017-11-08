@@ -1,6 +1,5 @@
-import { FETCH_POSTS } from 'ActionTypes'
-
-import { Map, List } from 'immutable'
+import { FETCH_POSTS }  from 'ActionTypes'
+import { Map, List }    from 'immutable'
 
 const initialState = Map({
   posts: List(),

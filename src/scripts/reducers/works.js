@@ -1,6 +1,5 @@
-import { FETCH_WORKS } from 'ActionTypes'
-
-import { Map, List } from 'immutable'
+import { FETCH_WORKS }  from 'ActionTypes'
+import { Map, List }    from 'immutable'
 
 const initialState = Map({
   works: List(),

@@ -1,7 +1,5 @@
-import { FETCH_PAGES } from 'ActionTypes'
-
-import { API_URL } from 'Constants'
-import { Map, List } from 'immutable'
+import { FETCH_PAGES }  from 'ActionTypes'
+import { Map, List }    from 'immutable'
 
 const initialState = Map({
   pages: List(),
