@@ -1,8 +1,3 @@
-const Project = ({data}) => (
-  <article className="project">
-    <h3>{data.title.rendered}</h3>
-    <p dangerouslySetInnerHTML={{ __html: data.content.rendered }}></p>
-  </article>
-)
+import postTypeSingle from 'hoc/postTypeSingle'
 
-export default Project
+export default postTypeSingle()

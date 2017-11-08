@@ -1,7 +1,7 @@
 import { fetchProjects }  from 'reducers/projects'
-import containerPostType  from 'hoc/containerPostType'
+import postTypeContainer  from 'hoc/postTypeContainer'
 import Projects           from 'components/Projects'
 
-const ProjectsContainer = containerPostType(Projects, 'projects', fetchProjects)
+const ProjectsContainer = postTypeContainer(Projects, 'projects', fetchProjects)
 
 export default ProjectsContainer

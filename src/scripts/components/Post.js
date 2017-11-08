@@ -1,8 +1,3 @@
-const Post = ({data}) => (
-  <article className="post">
-    <h3>{data.title.rendered}</h3>
-    <p dangerouslySetInnerHTML={{ __html: data.content.rendered }}></p>
-  </article>
-)
+import postTypeSingle from 'hoc/postTypeSingle'
 
-export default Post
+export default postTypeSingle()

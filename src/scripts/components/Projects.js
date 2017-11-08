@@ -1,6 +1,4 @@
 import Project from './Project'
-import displayPostType from '../hoc/displayPostType'
+import postTypeList from '../hoc/postTypeList'
 
-const Projects = displayPostType(Project, 'projects')
-
-export default Projects
+export default postTypeList(Project, 'projects')

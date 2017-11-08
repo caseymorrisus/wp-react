@@ -1,6 +1,4 @@
 import Work from './Work'
-import displayPostType from '../hoc/displayPostType'
+import postTypeList from '../hoc/postTypeList'
 
-const Works = displayPostType(Work, 'works')
-
-export default Works
+export default postTypeList(Work, 'works')
