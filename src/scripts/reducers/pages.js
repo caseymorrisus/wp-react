@@ -1,8 +1,4 @@
-import { 
-  FETCH_PAGES_REQUEST, 
-  FETCH_PAGES_SUCCESS,
-  FETCH_PAGES_FAILURE
-} from 'ActionTypes'
+import { FETCH_PAGES } from 'ActionTypes'
 
 import { API_URL } from 'Constants'
 import { Map, List } from 'immutable'
@@ -16,14 +12,14 @@ const initialState = Map({
 
 const pages = (state = initialState, action = {}) => {
   switch(action.type) {
-    case FETCH_PAGES_REQUEST:
+    case FETCH_PAGES.REQUEST:
       return state.set('isFetching', true)
-    case FETCH_PAGES_SUCCESS:
+    case FETCH_PAGES.SUCCESS:
       return state.merge(Map({
         isFetching: false,
         pages: state.get('pages').merge(List(action.pages))
       }))
-    case FETCH_PAGES_FAILURE:
+    case FETCH_PAGES.FAILURE:
       return state.merge(Map({
         isFetching: false,
         hasError: true,
@@ -35,16 +31,16 @@ const pages = (state = initialState, action = {}) => {
 }
 
 export const fetchPagesRequest = () => ({
-  type: FETCH_PAGES_REQUEST
+  type: FETCH_PAGES.REQUEST
 })
 
 export const pagesRequestSuccess = pages => ({
-  type: FETCH_PAGES_SUCCESS,
+  type: FETCH_PAGES.SUCCESS,
   pages
 })
 
 export const pagesRequestFailure = error => ({
-  type: FETCH_PAGES_FAILURE,
+  type: FETCH_PAGES.FAILURE,
   error
 })
 

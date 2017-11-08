@@ -1,5 +1,3 @@
-import PostTypeSingle from 'components/PostTypeSingle'
-
 const postTypeSingle = () => ({data, type}) => {
   return (
     <article className={type}>

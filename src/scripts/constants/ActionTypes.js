@@ -1,11 +1,20 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER'
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER'
+const createFetchType = (type) => ({
+  REQUEST: `FETCH_${type.toUpperCase()}_REQUEST`,
+  SUCCESS: `FETCH_${type.toUpperCase()}_SUCCESS`,
+  FAILURE: `FETCH_${type.toUpperCase()}_FAILURE`
+})
 
-export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST'
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE'
+export const FETCH_POSTS = createFetchType('posts')
 
-export const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST'
+export const FETCH_PROJECTS = createFetchType('projects')
+
+export const FETCH_WORKS = createFetchType('works')
+
+export const FETCH_PAGES = createFetchType('pages')
+
+export const FETCH_SETTINGS = createFetchType('settings')
+
+/*export const FETCH_PAGES_REQUEST = 'FETCH_PAGES_REQUEST'
 export const FETCH_PAGES_SUCCESS = 'FETCH_PAGES_SUCCESS'
 export const FETCH_PAGES_FAILURE = 'FETCH_PAGES_FAILURE'
 
@@ -21,4 +30,4 @@ export const FETCH_WORKS_REQUEST = 'FETCH_WORKS_REQUEST'
 export const FETCH_WORKS_SUCCESS = 'FETCH_WORKS_SUCCESS'
 export const FETCH_WORKS_FAILURE = 'FETCH_WORKS_FAILURE'
 
-export const FETCH_SETTINGS = 'FETCH_SETTINGS'
+export const FETCH_SETTINGS = 'FETCH_SETTINGS'*/

@@ -1,8 +1,4 @@
-import { 
-  FETCH_PROJECTS_REQUEST, 
-  FETCH_PROJECTS_SUCCESS,
-  FETCH_PROJECTS_FAILURE
-} from 'ActionTypes'
+import { FETCH_PROJECTS } from 'ActionTypes'
 
 import { Map, List } from 'immutable'
 
@@ -15,14 +11,14 @@ const initialState = Map({
 
 const projects = (state = initialState, action = {}) => {
   switch(action.type) {
-    case FETCH_PROJECTS_REQUEST:
+    case FETCH_PROJECTS.REQUEST:
       return state.set('isFetching', true)
-    case FETCH_PROJECTS_SUCCESS:
+    case FETCH_PROJECTS.SUCCESS:
       return state.merge(Map({
         isFetching: false,
         projects: state.get('projects').merge(List(action.projects))
       }))
-    case FETCH_PROJECTS_FAILURE:
+    case FETCH_PROJECTS.FAILURE:
       return state.merge(Map({
         isFetching: false,
         hasError: true,
@@ -34,16 +30,16 @@ const projects = (state = initialState, action = {}) => {
 }
 
 export const fetchProjectsRequest = () => ({
-  type: FETCH_PROJECTS_REQUEST
+  type: FETCH_PROJECTS.REQUEST
 })
 
 export const projectsRequestSuccess = projects => ({
-  type: FETCH_PROJECTS_SUCCESS,
+  type: FETCH_PROJECTS.SUCCESS,
   projects
 })
 
 export const projectsRequestFailure = error => ({
-  type: FETCH_PROJECTS_FAILURE,
+  type: FETCH_PROJECTS.FAILURE,
   error
 })
 

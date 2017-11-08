@@ -1,4 +1,6 @@
-import Project from './Project'
-import postTypeList from '../hoc/postTypeList'
+import { fetchProjects } from 'reducers/projects'
 
-export default postTypeList(Project, 'projects')
+export default Utils.createPostType({
+  type: 'projects',
+  fetch: fetchProjects
+})

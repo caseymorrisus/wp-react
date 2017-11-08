@@ -1,16 +1,12 @@
-import PostsContainer from 'containers/PostsContainer'
+import Posts from 'components/Posts'
 
-class Blog extends React.PureComponent {
-  render() {
-    return(
-      <DocumentTitle title={Utils.createTitle('Blog')}>
-        <div>
-          <h2>Blog</h2>
-          <PostsContainer />
-        </div>
-      </DocumentTitle>
-    )
-  }
-}
+const BlogTemplate = props => (
+  <DocumentTitle title={Utils.createTitle('Posts')}>
+    <div>
+      <h2>Blog</h2>
+      <Posts />
+    </div>
+  </DocumentTitle>
+)
 
-export default Blog
+export default BlogTemplate

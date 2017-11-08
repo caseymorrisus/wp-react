@@ -1,20 +1,17 @@
-import axios from 'axios'
-import { API_URL, TITLE_PREFIX } from 'Constants'
+import axios              from 'axios'
+import postTypeSingle     from 'hoc/postTypeSingle'
+import postTypeList       from 'hoc/postTypeList'
+import postTypeContainer  from 'hoc/postTypeContainer'
+
+import { 
+  API_URL,
+  TITLE_PREFIX 
+} from 'Constants'
 
 const Utilities = {
   def(x) {
     return typeof x !== 'undefined'
   },
-
-  /*flow(...args) {
-    return function(initial) {
-      return args.reduce((result, fn) => fn(result), initial)
-    }
-  },*/
-
-  // flow: (...args) => initial => reduce(args, (result, fn) => fn(result), initial),
-
-  // flow: (...args) => initial => args.reduce((result, fn) => fn(result), initial),
 
   flow: (...fns) => initial => fns.reduce((result, fn) => {
     return fn(result)
@@ -64,6 +61,23 @@ const Utilities = {
 
   isProduction() {
     return !this.isDevelopment()
+  },
+
+  createPostType({
+    Single = postTypeSingle,
+    List = postTypeList,
+    Container = postTypeContainer,
+    type,
+    fetch
+  }) {
+    return Container(
+      List(
+        Single(),
+        type
+      ),
+      type,
+      fetch
+    )
   }
 }
 

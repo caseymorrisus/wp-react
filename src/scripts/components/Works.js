@@ -1,4 +1,6 @@
-import Work from './Work'
-import postTypeList from '../hoc/postTypeList'
+import { fetchWorks } from 'reducers/works'
 
-export default postTypeList(Work, 'works')
+export default Utils.createPostType({
+  type: 'works',
+  fetch: fetchWorks
+})

@@ -1,4 +1,4 @@
-import MenuItem from './MenuItem'
+import { Link } from 'react-router-dom'
 
 const Menu = ({ menuItems }) => (
   <nav className="menu">
@@ -15,6 +15,15 @@ const Menu = ({ menuItems }) => (
       }
     })}
   </nav>
+)
+
+const MenuItem = ({key, to, title}) => (
+  <Link
+    to={to}
+    style={{marginRight: '10px'}}
+  >
+    {title}
+  </Link>
 )
 
 export default Menu

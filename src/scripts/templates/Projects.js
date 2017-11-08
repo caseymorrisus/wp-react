@@ -1,13 +1,9 @@
-import ProjectsContainer from 'containers/ProjectsContainer'
+import Projects from 'components/Projects'
 
-class Projects extends React.PureComponent {
-  render() {
-    return(
-      <DocumentTitle title={Utils.createTitle('Projects')}>
-        <ProjectsContainer />
-      </DocumentTitle>
-    )
-  }
-}
+const ProjectsTemplate = props => (
+  <DocumentTitle title={Utils.createTitle('Projects')}>
+    <Projects />
+  </DocumentTitle>
+)
 
-export default Projects
+export default ProjectsTemplate

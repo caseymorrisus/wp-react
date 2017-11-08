@@ -1,8 +1,4 @@
-import { 
-  FETCH_POSTS_REQUEST, 
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE
-} from 'ActionTypes'
+import { FETCH_POSTS } from 'ActionTypes'
 
 import { Map, List } from 'immutable'
 
@@ -15,14 +11,14 @@ const initialState = Map({
 
 const posts = (state = initialState, action = {}) => {
   switch(action.type) {
-    case FETCH_POSTS_REQUEST:
+    case FETCH_POSTS.REQUEST:
       return state.set('isFetching', true)
-    case FETCH_POSTS_SUCCESS:
+    case FETCH_POSTS.SUCCESS:
       return state.merge(Map({
         isFetching: false,
         posts: state.get('posts').merge(List(action.posts))
       }))
-    case FETCH_POSTS_FAILURE:
+    case FETCH_POSTS.FAILURE:
       return state.merge(Map({
         isFetching: false,
         hasError: true,
@@ -34,16 +30,16 @@ const posts = (state = initialState, action = {}) => {
 }
 
 export const fetchPostsRequest = () => ({
-  type: FETCH_POSTS_REQUEST
+  type: FETCH_POSTS.REQUEST
 })
 
 export const postsRequestSuccess = posts => ({
-  type: FETCH_POSTS_SUCCESS,
+  type: FETCH_POSTS.SUCCESS,
   posts
 })
 
 export const postsRequestFailure = error => ({
-  type: FETCH_POSTS_FAILURE,
+  type: FETCH_POSTS.FAILURE,
   error
 })
 

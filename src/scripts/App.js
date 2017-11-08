@@ -1,13 +1,9 @@
-import { connect } from 'react-redux'
-import Home from 'templates/Home'
-import Header from 'components/Header'
-import Loading from 'components/Loading'
-
-import templates from './templates'
-
-import { fetchPages } from 'reducers/pages'
-import { initSettings } from 'reducers/settings'
-import { PATH_PREFIX } from 'Constants'
+import { connect }      from 'react-redux'
+import { fetchPages }   from 'reducers/pages'
+import { PATH_PREFIX }  from 'Constants'
+import Header           from 'components/Header'
+import Loading          from 'components/Loading'
+import templates        from './templates'
 
 import {
   BrowserRouter as Router,
@@ -56,7 +52,7 @@ class App extends React.Component {
           <div>
             <Header />
             <Switch>
-              <Route path="/" component={Home} exact />
+              <Route path="/" component={this.templates.home} exact />
               {this.buildRoutes(pages)}
               <Route render={() => { return <Redirect to="/" />}}/>
             </Switch>
@@ -77,4 +73,4 @@ const mapStateToProps = state => ({
   pages: state.pages.get('pages')
 })
 
-export default connect(mapStateToProps, { fetchPages, initSettings })(App)
+export default connect(mapStateToProps, { fetchPages })(App)

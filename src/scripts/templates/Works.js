@@ -1,13 +1,9 @@
-import WorksContainer from 'containers/WorksContainer'
+import Works from 'components/Works'
 
-class Works extends React.PureComponent {
-  render() {
-    return(
-      <DocumentTitle title={Utils.createTitle('Works')}>
-        <WorksContainer />
-      </DocumentTitle>
-    )
-  }
-}
+const WorksTemplate = props => (
+  <DocumentTitle title={Utils.createTitle('Works')}>
+    <Works />
+  </DocumentTitle>
+)
 
-export default Works
+export default WorksTemplate
