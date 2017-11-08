@@ -7,7 +7,7 @@ const Header = ({pages}) => {
       getMainMenu,
       sortMenuItems,
       addURLToMenuItems
-    )(Utils.getRestMenus())
+    )(WPR.getRestMenus())
   }
 
   const getMainMenu = (menus) => {

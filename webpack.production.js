@@ -20,7 +20,8 @@ module.exports = {
       DataStore$: path.resolve(__dirname, 'src/scripts/flux/stores/DataStore.js'),
       DataActions$: path.resolve(__dirname, 'src/scripts/flux/actions/DataActions.js'),
       Flux: path.resolve(__dirname, 'src/scripts/flux'),
-      Utils$: path.resolve(__dirname, 'src/scripts/utilities/index.js'),
+      Utils$: path.resolve(__dirname, 'src/scripts/utilities/Utilities.js'),
+      WPR$: path.resolve(__dirname, 'src/scripts/utilities/WordPressReact.js'),
       Constants$: path.resolve(__dirname, 'src/scripts/constants/Constants.js'),
       ActionTypes$: path.resolve(__dirname, 'src/scripts/constants/ActionTypes.js')
     },
@@ -71,7 +72,8 @@ module.exports = {
       ReactDOM: 'react-dom',
       _: 'lodash',
       DocumentTitle: 'react-document-title',
-      Utils: path.resolve(__dirname, 'src/scripts/utilities/index.js')
+      Utils: path.resolve(__dirname, 'src/scripts/utilities/Utilities.js'),
+      WPR: path.resolve(__dirname, 'src/scripts/utilities/WordPressReact.js'),
     }),
 
       new HtmlWebpackPlugin({

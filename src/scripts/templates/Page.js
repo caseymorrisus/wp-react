@@ -5,7 +5,7 @@ const Page = ({pages, location: {pathname}}) => {
   const {title, content} = getPageBySlug(pages, pathname.slice(1, -1))
 
   return (
-    <DocumentTitle title={Utils.createTitle(title.rendered)}>
+    <DocumentTitle title={WPR.createTitle(title.rendered)}>
       <div>
         <h2 className="title">{title.rendered}</h2>
         <div className="content" dangerouslySetInnerHTML={{ __html: content.rendered }} />

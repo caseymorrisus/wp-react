@@ -8,21 +8,7 @@ import {
   TITLE_PREFIX 
 } from 'Constants'
 
-const Utilities = {
-  def(x) {
-    return typeof x !== 'undefined'
-  },
-
-  flow: (...fns) => initial => fns.reduce((result, fn) => {
-    return fn(result)
-  }, initial),
-
-  sortBy(array, prop, reverse = false) {
-    return reverse
-      ? [...array].sort((a,b) => b[prop] - a[prop])
-      : [...array].sort((a,b) => a[prop] - b[prop])
-  },
-
+const WordPressReact = {
   api(endpoint) {
     return axios.get(`${API_URL}/${endpoint}`)
   },
@@ -55,14 +41,6 @@ const Utilities = {
     return this.getGlobal('WP_REST_SETTINGS')
   },
 
-  isDevelopment() {
-    return !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  },
-
-  isProduction() {
-    return !this.isDevelopment()
-  },
-
   createPostType({
     Single = postTypeSingle,
     List = postTypeList,
@@ -81,5 +59,5 @@ const Utilities = {
   }
 }
 
-module.exports = Utilities
-module.exports.default = Utilities
+module.exports = WordPressReact
+module.exports.default = WordPressReact

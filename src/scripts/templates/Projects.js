@@ -1,7 +1,7 @@
 import Projects from 'components/Projects'
 
 const ProjectsTemplate = props => (
-  <DocumentTitle title={Utils.createTitle('Projects')}>
+  <DocumentTitle title={WPR.createTitle('Projects')}>
     <Projects />
   </DocumentTitle>
 )

@@ -1,6 +1,6 @@
 import { fetchProjects } from 'reducers/projects'
 
-export default Utils.createPostType({
+export default WPR.createPostType({
   type: 'projects',
   fetch: fetchProjects
 })

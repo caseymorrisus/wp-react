@@ -45,7 +45,7 @@ export const projectsRequestFailure = error => ({
 export const fetchProjects = callback => dispatch => {
   dispatch(fetchProjectsRequest())
 
-  Utils.api('projects')
+  WPR.api('projects')
     .then(response => {
       if (callback) callback(response.data)
       dispatch(projectsRequestSuccess(response.data))

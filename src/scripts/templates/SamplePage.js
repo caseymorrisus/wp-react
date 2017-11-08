@@ -7,7 +7,7 @@ const SamplePage = ({pages}) => {
   const {alt, title, url} = background
 
   return (
-    <DocumentTitle title={Utils.createTitle(pageTitle.rendered)}>
+    <DocumentTitle title={WPR.createTitle(pageTitle.rendered)}>
       <div>
         <h2 className="title">{pageTitle.rendered}</h2>
         <div className="content" dangerouslySetInnerHTML={{ __html: content.rendered }} />

@@ -45,7 +45,7 @@ export const pagesRequestFailure = error => ({
 export const fetchPages = callback => dispatch => {
   dispatch(fetchPagesRequest())
 
-  Utils.api('pages')
+  WPR.api('pages')
     .then(response => {
       if (callback) callback(response.data)
       dispatch(pagesRequestSuccess(response.data))

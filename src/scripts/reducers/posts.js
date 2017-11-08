@@ -45,7 +45,7 @@ export const postsRequestFailure = error => ({
 export const fetchPosts = callback => dispatch => {
   dispatch(fetchPostsRequest())
 
-  Utils.api('posts')
+  WPR.api('posts')
     .then(response => {
       if (callback) callback(response.data)
       dispatch(postsRequestSuccess(response.data))

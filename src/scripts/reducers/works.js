@@ -45,7 +45,7 @@ export const worksRequestFailure = error => ({
 export const fetchWorks = callback => dispatch => {
   dispatch(fetchWorksRequest())
 
-  Utils.api('works')
+  WPR.api('works')
     .then(({data}) => {
       if (callback) callback(data)
       dispatch(worksRequestSuccess(data))

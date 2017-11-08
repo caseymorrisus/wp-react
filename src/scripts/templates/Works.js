@@ -1,7 +1,7 @@
 import Works from 'components/Works'
 
 const WorksTemplate = props => (
-  <DocumentTitle title={Utils.createTitle('Works')}>
+  <DocumentTitle title={WPR.createTitle('Works')}>
     <Works />
   </DocumentTitle>
 )
