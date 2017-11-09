@@ -5,9 +5,6 @@ const createFetchType = (type) => ({
 })
 
 export const FETCH_POSTS = createFetchType('posts')
-
-export const FETCH_PROJECTS = createFetchType('projects')
-
 export const FETCH_WORKS = createFetchType('works')
-
 export const FETCH_PAGES = createFetchType('pages')
+export const FETCH_PROJECTS = createFetchType('projects')
