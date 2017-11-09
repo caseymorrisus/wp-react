@@ -13,6 +13,7 @@ const postTypeContainer = (PostTypeList, type, fetchPostType) => {
           isFetching={this.props.isFetching}
           error={this.props.errorMsg}
           hasError={this.props.hasError}
+          errorMsg={this.props.errorMsg}
         />
       )      
     }

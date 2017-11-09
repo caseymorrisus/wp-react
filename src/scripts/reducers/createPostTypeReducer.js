@@ -15,6 +15,7 @@ const createPostTypeReducer = ({type, actions}) => {
       case actions.SUCCESS:
         return state.merge(Map({
           isFetching: false,
+          hasError: false,
           [type]: state.get(type).merge(List(action.data))
         }))
       case actions.FAILURE:
