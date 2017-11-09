@@ -1,3 +1,5 @@
+import templates from './templates'
+import Header from 'components/Header'
 import {
   BrowserRouter as Router,
   Route,
@@ -5,9 +7,7 @@ import {
   Switch
 } from 'react-router-dom'
 
-import templates from './templates'
-
-import Header from 'components/Header'
+export const ROUTES_TO_ADD = ['blog']
 
 export const getTemplate = (slug) => {
   return templates.hasOwnProperty(slug)
@@ -59,7 +59,7 @@ export const buildRoutes = (pages) => {
     )
   })
 
-  const postTypes = addPostTypes(settings.post_types, ['blog'])
+  const postTypes = addPostTypes(settings.post_types, ROUTES_TO_ADD)
 
   const paginatedRoutes = buildPaginatedRoutes(postTypes)
 
