@@ -75,6 +75,9 @@ if ( ! class_exists('CM_Build_Rest_Settings') ) {
         'default_category' => get_option('default_category'),
         'default_post_format' => get_option('default_post_format'),
         'posts_per_page' => get_option('posts_per_page'),
+        'post_types' => get_post_types(array(
+            'public' => true
+        )),
       );
     }
   }

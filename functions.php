@@ -14,10 +14,12 @@ require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_menus.php' );
 require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_info.php' );
 
 // Adds WP_REST_SETTINGS to JS global
-require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_settings.php' );
+// called on init to make custom post types available
+function build_settings() {
+  require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_settings.php' );
+}
 
-// Enqueue React bundle script
-wp_enqueue_script('rest-theme-react', BUILD_REST__PLUGIN_DIR . '/build/bundle.js', array(), '1.0.0', true);
+add_action('init', 'build_settings');
 
 // Create custom post type (Project)
 if ( !function_exists( 'create_projects_type' ) ) {
@@ -56,5 +58,8 @@ if ( !function_exists( 'create_works_type' ) ) {
 
 // Add Works post types on init
 add_action('init', 'create_works_type');
+
+// Enqueue React bundle script
+wp_enqueue_script('rest-theme-react', BUILD_REST__PLUGIN_DIR . '/build/bundle.js', array(), '1.0.0', true);
 
 ?>

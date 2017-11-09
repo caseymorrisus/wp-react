@@ -23,8 +23,40 @@ class App extends React.Component {
     this.props.fetchPages()
   }
 
+  addPostTypes(postTypeObject, postTypes) {
+    const postTypeObjectClone = Object.assign({}, postTypeObject)
+
+    postTypes.forEach(postType => postTypeObjectClone[postType] = postType)
+
+    return postTypeObjectClone
+  }
+
+  buildPaginatedRoutes(postTypes) {
+    let routes = []
+
+    for (const postType in postTypes) {
+      if (postTypes.hasOwnProperty(postType)) {
+        if (postType != 'attachment' && postType != 'page' && postType != 'post') {
+          routes.push(postType)
+        }
+      }
+    }
+
+    return routes.map((name, i) => {
+      return (
+        <Route
+          key={i}
+          component={this.getTemplate(name)}
+          path={`/${name}/:page`}
+        />
+      )
+    })
+  }
+
   buildRoutes(pages) {
-    return pages.map((page, i) => {
+    const settings = WPReact.getRestSettings()
+
+    const pageRoutes = pages.map((page, i) => {
       return(
         <Route
           key={i}
@@ -33,7 +65,13 @@ class App extends React.Component {
           exact
         />
       )
-    })  
+    })
+
+    const postTypes = this.addPostTypes(settings.post_types, ['blog'])
+
+    const paginatedRoutes = this.buildPaginatedRoutes(postTypes)
+
+    return [...pageRoutes, ...paginatedRoutes]
   }
 
   getTemplate(slug) {
@@ -53,7 +91,6 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route path="/" component={this.templates.home} exact />
-              <Route path="/works/:page" component={this.templates.works} />
               {this.buildRoutes(pages)}
               <Route render={() => { return <Redirect to="/" />}}/>
             </Switch>
