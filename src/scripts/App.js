@@ -53,6 +53,7 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route path="/" component={this.templates.home} exact />
+              <Route path="/works/:page" component={this.templates.works} />
               {this.buildRoutes(pages)}
               <Route render={() => { return <Redirect to="/" />}}/>
             </Switch>

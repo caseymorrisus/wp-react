@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 const postTypeContainer = (PostTypeList, type, fetchPostType) => {
   class PostTypeContainer extends React.PureComponent {
     componentWillMount() {
-      this.props.fetchPostType()
+      this.props.fetchPostType(this.props.page)
     }
 
     render() {

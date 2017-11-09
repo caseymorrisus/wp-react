@@ -15,8 +15,11 @@ const WordPressReact = {
   APP_URL,
   PATH_PREFIX,
 
-  api(endpoint) {
-    return axios.get(`${API_URL}/${endpoint}`)
+  api(endpoint, page) {
+    const _URL = `${API_URL}/${endpoint}`
+    const URL = page ? `${_URL}?page=${page}` : _URL
+
+    return axios.get(URL)
   },
 
   setTitle(title) {

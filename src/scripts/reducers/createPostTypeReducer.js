@@ -43,10 +43,10 @@ const createPostTypeReducer = ({type, actions}) => {
     error
   })
 
-  const fetchType = callback => dispatch => {
+  const fetchType = (page, callback) => dispatch => {
     dispatch(typeRequest())
 
-    WPReact.api(type)
+    WPReact.api(type, page)
       .then(({data}) => {
         if (callback) callback(data)
         dispatch(typeRequestSuccess(data))
