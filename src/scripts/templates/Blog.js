@@ -4,9 +4,13 @@ const BlogTemplate = props => (
   <DocumentTitle title={WPReact.createTitle('Posts')}>
     <div>
       <h2>Blog</h2>
-      <Posts />
+      <Posts 
+        page={props.match.params.page}
+        perPage={WPReact.getRestSettings().posts_per_page}
+      />
     </div>
   </DocumentTitle>
 )
+
 
 export default BlogTemplate

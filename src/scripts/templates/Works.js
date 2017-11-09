@@ -4,7 +4,7 @@ const WorksTemplate = props => (
   <DocumentTitle title={WPReact.createTitle('Works')}>
     <Works
       page={props.match.params.page}
-      perPage={5}
+      perPage={3}
     />
   </DocumentTitle>
 )
