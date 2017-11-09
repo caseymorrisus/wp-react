@@ -2,6 +2,7 @@ import axios              from 'axios'
 import postTypeSingle     from 'hoc/postTypeSingle'
 import postTypeList       from 'hoc/postTypeList'
 import postTypeContainer  from 'hoc/postTypeContainer'
+import { Map, List }      from 'immutable'
 
 import { 
   API_URL,
@@ -56,7 +57,7 @@ const WordPressReact = {
       type,
       fetch
     )
-  }
+  },
 }
 
 module.exports = WordPressReact

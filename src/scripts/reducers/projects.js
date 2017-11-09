@@ -1,57 +1,7 @@
-import { FETCH_PROJECTS } from 'ActionTypes'
-import { Map, List }      from 'immutable'
+import { FETCH_PROJECTS }  from 'ActionTypes'
+import createPostTypeReducer from './createPostTypeReducer'
 
-const initialState = Map({
-  projects: List(),
-  isFetching: false,
-  hasError: false,
-  errorMsg: null
+module.exports = createPostTypeReducer({
+  type: 'projects',
+  actions: FETCH_PROJECTS
 })
-
-const projects = (state = initialState, action = {}) => {
-  switch(action.type) {
-    case FETCH_PROJECTS.REQUEST:
-      return state.set('isFetching', true)
-    case FETCH_PROJECTS.SUCCESS:
-      return state.merge(Map({
-        isFetching: false,
-        projects: state.get('projects').merge(List(action.projects))
-      }))
-    case FETCH_PROJECTS.FAILURE:
-      return state.merge(Map({
-        isFetching: false,
-        hasError: true,
-        errorMsg: action.error
-      }))
-    default:
-      return state
-  }
-}
-
-export const fetchProjectsRequest = () => ({
-  type: FETCH_PROJECTS.REQUEST
-})
-
-export const projectsRequestSuccess = projects => ({
-  type: FETCH_PROJECTS.SUCCESS,
-  projects
-})
-
-export const projectsRequestFailure = error => ({
-  type: FETCH_PROJECTS.FAILURE,
-  error
-})
-
-export const fetchProjects = callback => dispatch => {
-  dispatch(fetchProjectsRequest())
-
-  WPR.api('projects')
-    .then(response => {
-      if (callback) callback(response.data)
-      dispatch(projectsRequestSuccess(response.data))
-    }).catch(err => {
-      dispatch(projectsRequestFailure('Error fetching post.'))
-    })
-}
-
-export default projects

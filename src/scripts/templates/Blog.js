@@ -1,7 +1,7 @@
 import Posts from 'components/Posts'
 
 const BlogTemplate = props => (
-  <DocumentTitle title={WPR.createTitle('Posts')}>
+  <DocumentTitle title={WPReact.createTitle('Posts')}>
     <div>
       <h2>Blog</h2>
       <Posts />

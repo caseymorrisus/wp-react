@@ -7,7 +7,7 @@ const Header = ({pages}) => {
       getMainMenu,
       sortMenuItems,
       addURLToMenuItems
-    )(WPR.getRestMenus())
+    )(WPReact.getRestMenus())
   }
 
   const getMainMenu = (menus) => {

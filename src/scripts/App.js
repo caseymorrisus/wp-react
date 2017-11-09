@@ -1,9 +1,10 @@
 import { connect }      from 'react-redux'
-import { fetchPages }   from 'reducers/pages'
 import { PATH_PREFIX }  from 'Constants'
 import Header           from 'components/Header'
 import Loading          from 'components/Loading'
 import templates        from './templates'
+
+import { fetchType as fetchPages } from 'reducers/pages'
 
 import {
   BrowserRouter as Router,

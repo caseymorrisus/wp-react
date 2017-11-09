@@ -1,6 +1,6 @@
-import { fetchProjects } from 'reducers/projects'
+import { fetchType } from 'reducers/projects'
 
-export default WPR.createPostType({
+export default WPReact.createPostType({
   type: 'projects',
-  fetch: fetchProjects
+  fetch: fetchType
 })
