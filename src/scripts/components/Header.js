@@ -22,7 +22,7 @@ const Header = ({pages}) => {
 
   const addURLToMenuItems = (menuItems) => {
     return menuItems.map(item => {
-      item.to = item.url.replace(APP_URL, '')
+      item.to = item.url.replace(WPReact.APP_URL, '')
       return item
     })
   }

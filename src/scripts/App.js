@@ -1,5 +1,4 @@
 import { connect }      from 'react-redux'
-import { PATH_PREFIX }  from 'Constants'
 import Header           from 'components/Header'
 import Loading          from 'components/Loading'
 import templates        from './templates'
@@ -49,7 +48,7 @@ class App extends React.Component {
 
     if (pageSize) {
       return(
-        <Router basename={PATH_PREFIX}>
+        <Router basename={WPReact.PATH_PREFIX}>
           <div>
             <Header />
             <Switch>

@@ -6,10 +6,15 @@ import { Map, List }      from 'immutable'
 
 import { 
   API_URL,
-  TITLE_PREFIX 
+  TITLE_PREFIX,
+  PATH_PREFIX,
+  APP_URL,
 } from 'Constants'
 
 const WordPressReact = {
+  APP_URL,
+  PATH_PREFIX,
+
   api(endpoint) {
     return axios.get(`${API_URL}/${endpoint}`)
   },
