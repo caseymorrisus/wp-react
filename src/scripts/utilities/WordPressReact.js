@@ -15,9 +15,11 @@ const WordPressReact = {
   APP_URL,
   PATH_PREFIX,
 
-  api(endpoint, page) {
-    const _URL = `${API_URL}/${endpoint}`
-    const URL = page ? `${_URL}?page=${page}` : _URL
+  api(endpoint, page, perPage) {
+    const sep = page ? '&' : '?'
+    let URL = `${API_URL}/${endpoint}`
+    URL = page ? `${URL}?page=${page}` : URL
+    URL = perPage ? `${URL}${sep}per_page=${perPage}` : URL
 
     return axios.get(URL)
   },
