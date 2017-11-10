@@ -1,7 +1,7 @@
 import { APP_URL } from 'Constants'
 import Menu from './Menu'
 
-const Header = ({pages}) => {
+const Header = (props) => {
   const getMenuItems = () => {
     return Utils.flow(
       getMainMenu,
