@@ -1,4 +1,5 @@
 import { Map, List } from 'immutable'
+import WPReact from '../utilities/WordPressReact'
 
 const createPostTypeReducer = ({type, actions}) => {
   const initialState = Map({
@@ -57,7 +58,10 @@ const createPostTypeReducer = ({type, actions}) => {
 
   return {
     reducer,
-    fetchType
+    fetchType,
+    typeRequest,
+    typeRequestSuccess,
+    typeRequestFailure
   }
 }
 
