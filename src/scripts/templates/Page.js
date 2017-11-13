@@ -2,7 +2,16 @@ import { connect }        from 'react-redux'
 import { getPageBySlug }  from 'reducers/pages'
 
 const Page = ({pages, location: {pathname}}) => {
-  const {title, content} = getPageBySlug(pages, pathname.slice(1, -1))
+  const page = getPageBySlug(pages, pathname.slice(1, -1))
+  let title, content
+
+  if (page) {
+    title = page.title
+    content = page.content
+  } else {
+    title = { rendered: "No page title" }
+    content = { rendered: 'No page content' }
+  }
 
   return (
     <DocumentTitle title={WPReact.createTitle(title.rendered)}>
