@@ -1,7 +1,10 @@
 import { fetchType } from 'reducers/works'
+import { Link } from 'react-router-dom'
 
 const WorkSingle = () => ({data}) => (
-  <div className="custom-work-single">{data.title.rendered}</div>
+  <div className="custom-work-single">
+    <Link to={`/post/${data.slug}`}>{data.title.rendered}</Link>
+  </div>
 )
 
 export default WPReact.createPostType({
