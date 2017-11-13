@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   render() {
-    return this.buildDOM()
+    return getRoutes(this.props.pages)
   }
 }
 
