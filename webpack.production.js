@@ -70,7 +70,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom',
-      _: 'lodash',
       DocumentTitle: 'react-document-title',
       Utils: path.resolve(__dirname, 'src/scripts/utilities/Utilities.js'),
       WPReact: path.resolve(__dirname, 'src/scripts/utilities/WordPressReact.js'),
