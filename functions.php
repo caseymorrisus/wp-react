@@ -15,7 +15,10 @@ if ( !function_exists( 'create_projects_type' ) ) {
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
-      'rewrite' => array('slug' => 'projects')
+      'rewrite' => array(
+        'slug' => 'project',
+        'with_front' => false,
+      ),
     ));
   }
 }
@@ -34,7 +37,10 @@ if ( !function_exists( 'create_works_type' ) ) {
       'public' => true,
       'has_archive' => true,
       'show_in_rest' => true,
-      'rewrite' => array('slug' => 'works')
+      'rewrite' => array(
+        'slug' => 'work',
+        'with_front' => false,
+      ),
     ));
   }
 }
@@ -43,7 +49,11 @@ if ( !function_exists( 'create_works_type' ) ) {
 add_action('init', 'create_works_type');
 
 // Adds WP_REST_ROUTES to JS global
-require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_routes.php' );
+function build_routes() {
+  require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_routes.php' );  
+}
+
+add_action('init', 'build_routes');
 
 // Adds WP_REST_MENUS to JS global
 require_once( BUILD_REST__PLUGIN_DIR . 'includes/build_rest_menus.php' );
@@ -58,6 +68,15 @@ function build_settings() {
 }
 
 add_action('init', 'build_settings');
+
+// Adds Settings REST route
+require_once( BUILD_REST__PLUGIN_DIR . 'includes/add_settings_rest_route.php' );
+
+// Adds Menus REST route
+require_once( BUILD_REST__PLUGIN_DIR . 'includes/add_menus_rest_route.php' );
+
+// Adds Routes REST route
+require_once( BUILD_REST__PLUGIN_DIR . 'includes/add_routes_rest_route.php' );
 
 // Enqueue React bundle script
 wp_enqueue_script('rest-theme-react', BUILD_REST__PLUGIN_DIR . '/build/bundle.js', array(), '1.0.0', true);

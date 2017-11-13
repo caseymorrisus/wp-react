@@ -15,55 +15,83 @@ export const getTemplate = (slug) => {
     : templates.default
 }
 
-export const addPostTypes = (postTypeObject, postTypes) => {
-  const postTypeObjectClone = Object.assign({}, postTypeObject)
+export const buildPageRoutes = (routes) => {
+  const pages = routes.filter(route => route.type === 'page')
 
-  postTypes.forEach(postType => postTypeObjectClone[postType] = postType)
-
-  return postTypeObjectClone
+  return pages.map((page, i) => (
+    <Route
+      key={i}
+      component={getTemplate(page.slug)}
+      path={`/${page.slug}`}
+      exact
+    />
+  ))
 }
 
-export const buildPaginatedRoutes = (postTypes) => {
-  let routes = []
+export const buildPaginatedRoutes = (postTypes, routesToAdd) => {
+  return [...postTypes, ...routesToAdd].map((name, i) => (
+    <Route
+      key={i}
+      component={getTemplate(name)}
+      path={`/${name}/:page`}
+      exact
+    />
+  ))
+}
 
-  for (const postType in postTypes) {
-    if (postTypes.hasOwnProperty(postType)) {
-      if (postType != 'attachment' && postType != 'page' && postType != 'post') {
-        routes.push(postType)
-      }
-    }
-  }
+export const buildPostSingles = (routes) => {
+  const posts = routes.filter(route => route.type !== 'page')
+  console.log('posts', posts)
 
-  return routes.map((name, i) => {
+  return posts.map((post, i) => (
+    <Route
+      key={i}
+      component={getTemplate(post.type.slice(0, -1))}
+      path={`/${post.type.slice(0, -1)}/${post.slug}`}
+      exact
+    />
+  ))
+}
+
+export const getCustomPostTypes = (postTypes) => {
+  return Object.keys(postTypes).filter(postType => postType !== 'post')
+}
+
+export const buildRoutes = (pagesOLD) => {
+  const settings = WPReact.getRestSettings()
+  const routes = WPReact.getRestRoutes()
+
+  // routes for all pages eg: /blog, /projects, /contact
+  const pageRoutes = buildPageRoutes(routes)
+
+  // paginated routes eg: /blog/2, /projects/2, /works/3
+  // const postTypes = Object.keys(settings.post_types)
+  const postTypes = getCustomPostTypes(settings.post_types)
+  const paginatedRoutes = buildPaginatedRoutes(postTypes, ROUTES_TO_ADD)
+
+  // post single routes eg: /projects/project-title, /works/works-title, /post/post-title
+  //const singleRoutes = buildPostSingles(routes)
+  const singles = ['work', 'project']
+  const singleRoutes = singles.map((single, i) => {
     return (
       <Route
         key={i}
-        component={getTemplate(name)}
-        path={`/${name}/:page`}
-      />
-    )
-  })
-}
-
-export const buildRoutes = (pages) => {
-  const settings = WPReact.getRestSettings()
-
-  const pageRoutes = pages.map((page, i) => {
-    return(
-      <Route
-        key={i}
-        component={getTemplate(page.slug)}
-        path={`/${page.slug}`}
+        component={getTemplate(single)}
+        path={`/${single}/:slug`}
         exact
       />
     )
   })
 
-  const postTypes = addPostTypes(settings.post_types, ROUTES_TO_ADD)
+  const postSingles = (
+    <Route
+      component={getTemplate('post')}
+      path={`/post/:slug`}
+      exact
+    />
+  )
 
-  const paginatedRoutes = buildPaginatedRoutes(postTypes)
-
-  return [...pageRoutes, ...paginatedRoutes]
+  return [...pageRoutes, ...paginatedRoutes, ...singleRoutes, postSingles]
 }
 
 export const getRoutes = (pages) => {
