@@ -8,6 +8,7 @@
     "test:watch": "npm test -- --watch",
     "start": "webpack-dev-server --inline --progress --config webpack.dev.js",
     "build": "npm run clean && webpack -p --progress --config webpack.production.js",
+    "watch": "webpack -p --progress --watch --config webpack.production.js",
     "clean": "rimraf ./build/*"
   },
   "author": "",
