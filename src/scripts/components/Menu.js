@@ -17,6 +17,10 @@ const Menu = ({ menuItems }) => (
   </nav>
 )
 
+Menu.propTypes = {
+  menuItems: PropTypes.array
+}
+
 const MenuItem = ({to, title}) => (
   <Link
     to={to}
@@ -25,5 +29,10 @@ const MenuItem = ({to, title}) => (
     {title}
   </Link>
 )
+
+MenuItem.propTypes = {
+  to: PropTypes.string,
+  title: PropTypes.string
+}
 
 export default Menu

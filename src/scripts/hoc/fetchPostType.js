@@ -16,4 +16,10 @@ const fetchPostType = (PostTypeContainer, fetchType) => {
   return connect(null, {fetchType})(FetchPostType)
 }
 
+fetchPostType.propTypes = {
+  fetchType: PropTypes.func,
+  page: PropTypes.string,
+  perPage: PropTypes.number
+}
+
 export default fetchPostType
