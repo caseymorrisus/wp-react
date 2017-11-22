@@ -17,7 +17,7 @@ const Menu = ({ menuItems }) => (
   </nav>
 )
 
-const MenuItem = ({key, to, title}) => (
+const MenuItem = ({to, title}) => (
   <Link
     to={to}
     style={{marginRight: '10px'}}
