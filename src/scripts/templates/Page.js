@@ -15,7 +15,7 @@ const Page = ({pages, location: {pathname}}) => {
 
   return (
     <DocumentTitle title={WPReact.createTitle(title.rendered)}>
-      <div>
+      <div className="page">
         <h2 className="title">{title.rendered}</h2>
         <div className="content" dangerouslySetInnerHTML={{ __html: content.rendered }} />
       </div>

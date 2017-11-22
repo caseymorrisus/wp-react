@@ -8,7 +8,7 @@ const SamplePage = ({pages}) => {
 
   return (
     <DocumentTitle title={WPReact.createTitle(pageTitle.rendered)}>
-      <div>
+      <div className="sample-page">
         <h2 className="title">{pageTitle.rendered}</h2>
         <div className="content" dangerouslySetInnerHTML={{ __html: content.rendered }} />
         <img src={url} alt={alt} title={title}/>
