@@ -18,24 +18,19 @@ export const getTemplate = (slug) => {
 export const buildPageRoutes = (routes) => {
   const pages = routes.filter(route => route.type === 'page')
 
-  const returned = pages.map((page, i) => ({
+  return pages.map((page, i) => ({
     component: getTemplate(page.slug),
     path: `/${page.slug}`,
     exact: true
   }))
-
-  return returned
 }
 
-export const buildPaginatedRoutes = (postTypes, routesToAdd) => {
-  const returned = [...postTypes, ...routesToAdd].map((name, i) => ({
+export const buildPaginatedRoutes = (postTypes, routesToAdd) => [...postTypes, ...routesToAdd]
+  .map((name, i) => ({
     component: getTemplate(name),
     path: `/${name}/:page`,
     exact: true
   }))
-
-  return returned
-}
 
 export const getCustomPostTypes = (postTypes) => {
   return Object.keys(postTypes).filter(postType => postType !== 'post')
@@ -69,7 +64,7 @@ export const buildRoutes = (pagesOLD) => {
 
   const allRoutes = [...pageRoutes, ...paginatedRoutes, ...singleRoutes, postSingles]
 
-  const routeComponents = allRoutes.map((route, i) => (
+  return allRoutes.map((route, i) => (
     <Route
       key={i}
       component={route.component}
@@ -77,8 +72,6 @@ export const buildRoutes = (pagesOLD) => {
       exact={route.exact}
     />
   ))
-
-  return routeComponents
 }
 
 export const getRoutes = (pages) => (
