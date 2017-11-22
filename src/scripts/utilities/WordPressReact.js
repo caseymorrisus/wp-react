@@ -2,6 +2,7 @@ import axios              from 'axios'
 import postTypeSingle     from 'hoc/postTypeSingle'
 import postTypeList       from 'hoc/postTypeList'
 import postTypeContainer  from 'hoc/postTypeContainer'
+import fetchPostType      from 'hoc/fetchPostType'
 import { Map, List }      from 'immutable'
 
 import { 
@@ -15,9 +16,10 @@ const WordPressReact = {
   APP_URL,
   PATH_PREFIX,
 
-  api(endpoint, page, perPage) {
+  api({endpoint, page, perPage, id}) {
     const sep = page ? '&' : '?'
     let URL = `${API_URL}/${endpoint}`
+    URL = id ? `${URL}/${id}` : URL
     URL = page ? `${URL}?page=${page}` : URL
     URL = perPage ? `${URL}${sep}per_page=${perPage}` : URL
 
@@ -53,6 +55,26 @@ const WordPressReact = {
   },
 
   createPostType({
+    FetchType = fetchPostType,
+    Single = postTypeSingle,
+    List = postTypeList,
+    Container = postTypeContainer,
+    type,
+    fetch
+  }) {
+    return FetchType(
+      Container(
+        List(
+          Single(),
+          type
+        ),
+        type
+      ),
+      fetch
+    )
+  },
+
+  /*createPostType({
     Single = postTypeSingle,
     List = postTypeList,
     Container = postTypeContainer,
@@ -67,7 +89,7 @@ const WordPressReact = {
       type,
       fetch
     )
-  },
+  },*/
 }
 
 module.exports = WordPressReact

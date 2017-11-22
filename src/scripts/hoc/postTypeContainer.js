@@ -1,11 +1,7 @@
 import { connect } from 'react-redux'
 
-const postTypeContainer = (PostTypeList, type, fetchPostType) => {
+const postTypeContainer = (PostTypeList, type) => {
   class PostTypeContainer extends React.PureComponent {
-    componentWillMount() {
-      this.props.fetchPostType(this.props.page, this.props.perPage)
-    }
-
     render() {
       return(
         <PostTypeList
@@ -15,7 +11,7 @@ const postTypeContainer = (PostTypeList, type, fetchPostType) => {
           hasError={this.props.hasError}
           errorMsg={this.props.errorMsg}
         />
-      )      
+      )
     }
   }
 
@@ -26,7 +22,7 @@ const postTypeContainer = (PostTypeList, type, fetchPostType) => {
     hasError: state[type].get('hasError')
   })
 
-  return connect(mapStateToProps, {fetchPostType})(PostTypeContainer)
+  return connect(mapStateToProps)(PostTypeContainer)
 }
 
 export default postTypeContainer

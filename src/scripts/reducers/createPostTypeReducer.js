@@ -4,6 +4,7 @@ import WPReact from '../utilities/WordPressReact'
 const createPostTypeReducer = ({type, actions}) => {
   const initialState = Map({
     [type]: List(),
+    [type.slice(0, -1)]: null,
     isFetching: false,
     hasError: false,
     errorMsg: null
@@ -20,6 +21,20 @@ const createPostTypeReducer = ({type, actions}) => {
           [type]: state.get(type).merge(List(action.data))
         }))
       case actions.FAILURE:
+        return state.merge(Map({
+          isFetching: false,
+          hasError: true,
+          errorMsg: action.error
+        }))
+      case actions.single.REQUEST:
+        return state.set('isFetching', true)
+      case actions.single.SUCCESS:
+        return state.merge(Map({
+          isFetching: false,
+          hasError: false,
+          [type.slice(0, -1)]: action.data
+        }))
+      case actions.single.FAILURE:
         return state.merge(Map({
           isFetching: false,
           hasError: true,
@@ -44,10 +59,24 @@ const createPostTypeReducer = ({type, actions}) => {
     error
   })
 
+  const typeSingleRequest = () => ({
+    type: actions.single.REQUEST
+  })
+
+  const typeSingleSuccess = data => ({
+    type: actions.single.SUCCESS,
+    data
+  })
+
+  const typeSingleFailure = error => ({
+    type: actions.single.FAILURE,
+    error
+  })
+
   const fetchType = (page, perPage, callback) => dispatch => {
     dispatch(typeRequest())
 
-    WPReact.api(type, page, perPage)
+    WPReact.api({endpoint: type, page, perPage})
       .then(({data}) => {
         if (callback) callback(data)
         dispatch(typeRequestSuccess(data))
@@ -56,9 +85,29 @@ const createPostTypeReducer = ({type, actions}) => {
       })
   }
 
+  const fetchSingleById = (list = [], id, callback) => dispatch => {
+    const findById = list.find(item => item.id === id)
+
+    dispatch(typeSingleRequest())
+
+    // check if single already exists in state before calling API
+    if (findById) {
+      dispatch(typeSingleSuccess(findById))
+    } else {
+      WPReact.api({endpoint: type, id})
+        .then(({data}) => {
+          if (callback) callback(data)
+          dispatch(typeSingleSuccess(data))
+        }).catch(err => {
+          dispatch(typeSingleFailure(`Error fetching ${type} single.`))
+        })
+    }
+  }
+
   return {
     reducer,
     fetchType,
+    fetchSingleById,
     typeRequest,
     typeRequestSuccess,
     typeRequestFailure
