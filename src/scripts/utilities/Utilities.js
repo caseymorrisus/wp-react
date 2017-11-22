@@ -21,6 +21,10 @@ const Utilities = {
     return !this.isDevelopment()
   },
 
+  pluralize(str) {
+    return `${str}s`
+  },
+
 }
 
 module.exports = Utilities
