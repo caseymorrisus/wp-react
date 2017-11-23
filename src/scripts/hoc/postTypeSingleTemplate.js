@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
   class PostTypeSingleTemplate extends React.PureComponent {
-    componentWillMount() {
+    componentDidMount() {
       const slug = this.props.match.params.slug
       const plural = Utils.pluralize(type)
 

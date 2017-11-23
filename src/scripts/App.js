@@ -5,7 +5,7 @@ import { getRoutes }    from './routes'
 import { fetchType as fetchPages } from 'reducers/pages'
 
 class App extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPages()
   }
 
