@@ -73,23 +73,6 @@ const WordPressReact = {
       fetch
     )
   },
-
-  /*createPostType({
-    Single = postTypeSingle,
-    List = postTypeList,
-    Container = postTypeContainer,
-    type,
-    fetch
-  }) {
-    return Container(
-      List(
-        Single(),
-        type
-      ),
-      type,
-      fetch
-    )
-  },*/
 }
 
 module.exports = WordPressReact
