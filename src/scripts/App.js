@@ -14,14 +14,14 @@ class App extends React.Component {
     const pageSize = pages ? pages.size : 0
 
     if (pageSize) {
-      return getRoutes(pages)
+      return getRoutes()
     } else {
       return (<Loading message="Loading Application..."/>)
     }
   }
 
   render() {
-    return getRoutes(this.props.pages)
+    return this.buildDOM()
   }
 }
 

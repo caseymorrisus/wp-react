@@ -36,7 +36,7 @@ export const getCustomPostTypes = (postTypes) => {
   return Object.keys(postTypes).filter(postType => postType !== 'post')
 }
 
-export const buildRoutes = (pagesOLD) => {
+export const buildRoutes = () => {
   const settings = WPReact.getRestSettings()
   const routes = WPReact.getRestRoutes()
 
@@ -74,13 +74,13 @@ export const buildRoutes = (pagesOLD) => {
   ))
 }
 
-export const getRoutes = (pages) => (
+export const getRoutes = () => (
   <Router basename={WPReact.PATH_PREFIX}>
     <div>
       <Header />
       <Switch>
         <Route path="/" component={templates.home} exact />
-        {buildRoutes(pages)}
+        {buildRoutes()}
         <Route render={() => { return <Redirect to="/" />}}/>
       </Switch>
     </div>
