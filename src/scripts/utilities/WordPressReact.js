@@ -2,6 +2,7 @@ import axios              from 'axios'
 import postTypeSingle     from 'hoc/postTypeSingle'
 import postTypeList       from 'hoc/postTypeList'
 import postTypeContainer  from 'hoc/postTypeContainer'
+import fetchPostType      from 'hoc/fetchPostType'
 import { Map, List }      from 'immutable'
 
 import { 
@@ -54,6 +55,7 @@ const WordPressReact = {
   },
 
   createPostType({
+    FetchType = fetchPostType,
     Single = postTypeSingle,
     List = postTypeList,
     Container = postTypeContainer,
