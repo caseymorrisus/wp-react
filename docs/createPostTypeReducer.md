@@ -49,7 +49,7 @@ import { fetchType } from 'reducers/posts'
 fetchType()
 ```
 
-Ideally, the above function be called within the `componentWillMount` method of a container function where it's data can be used by child (presentational) components.
+Ideally, the above function be called within the `componentDidMount` method of a container function where it's data can be used by child (presentational) components.
 
 The `fetchType` function supplied is a requirement for the `createPostType` method:
 
@@ -61,3 +61,27 @@ export default WPReact.createPostType({
   fetch: fetchType
 })
 ```
+### Exposes
+
+Each reducer created will expose a state object which looks like:
+
+```javascript
+const state = {
+  isFetching: Boolean,
+  hasError: Boolean,
+  errorMsg: String,
+  [type]: Array
+}
+```
+
+The last property looks a little confusing, but it corresponds to the type supplied to the `createPostTypeReducer` function. If given the type of `posts`, the state object would look like:
+
+```javascript
+const state = {
+  isFetching: Boolean,
+  hasError: Boolean,
+  errorMsg: String,
+  posts: Array
+}
+```
+
