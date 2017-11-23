@@ -1,3 +1,3 @@
-##routes.js
+## routes.js
 
 The main thing used here is the `getRoutes` function that is called within `App.js`. Creates routes based on pages supplied. Also creates paginated routes for the blog (posts) and custom post types. Values supplies to `ROUTES_TO_ADD` array will have paginated routes created for them. This is useful when the route name is different than the name of the post type, in this case blog vs posts. Pulls templates for routes from `templates/index.js` based on page slug. Uses default template (Page) if none exists for slug.
