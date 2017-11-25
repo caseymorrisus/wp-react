@@ -11,9 +11,13 @@ import {
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')  
-)
+const app = document.getElementById('app')
+
+if (app) {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    app 
+  )  
+}
