@@ -3,9 +3,6 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {  
-  /*devServer: {
-    historyApiFallback: true, // This will make the server understand "/some-link" routes instead of "/#/some-link"
-  },*/
   output: {
     path: path.join(__dirname, 'build'), // This is used to specify folder for producion bundle
     filename: 'bundle.js', // Filename for production bundle
