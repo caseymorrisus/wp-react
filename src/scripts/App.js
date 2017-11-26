@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Routes } from './routes'
 import addLoader from 'hoc/addLoader'
 
-const RoutesWithLoader = addLoader(Routes)
+const RoutesWithLoader = addLoader('Loading WP-React app...')(Routes)
 
 class App extends React.Component {
   componentDidMount() {
@@ -11,7 +11,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <RoutesWithLoader loading={this.props.pages.length > 0} />
+    return <RoutesWithLoader loading={this.props.pages.length <= 0} />
   }
 }
 

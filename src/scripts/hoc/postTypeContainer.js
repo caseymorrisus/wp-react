@@ -1,15 +1,19 @@
 import { connect } from 'react-redux'
+import addLoader from 'hoc/addLoader'
 
 const postTypeContainer = (PostTypeList, type) => {
+  const PostTypeListWithLoader = addLoader(`Loading ${type}`)(PostTypeList)
+
   class PostTypeContainer extends React.PureComponent {
     render() {
       return(
-        <PostTypeList
+        <PostTypeListWithLoader
           posts={this.props.posts}
           isFetching={this.props.isFetching}
           error={this.props.errorMsg}
           hasError={this.props.hasError}
           errorMsg={this.props.errorMsg}
+          loading={this.props.isFetching && !this.props.postSize}
         />
       )
     }
