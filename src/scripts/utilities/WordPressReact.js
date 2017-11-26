@@ -46,5 +46,6 @@ export const createPostType = ({
     ),
     type
   ),
-  fetch
+  fetch,
+  type
 )
