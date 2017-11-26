@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {  
   output: {
@@ -65,6 +66,14 @@ module.exports = {
         filename: 'index.html',
         template: './src/index.html',
         hash: false
+    }),
+
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 8888,
+      generateStatsFile: false,
+      openAnalyzer: false
     })
   ]
 }
