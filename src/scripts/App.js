@@ -11,7 +11,7 @@ class App extends React.Component {
 
   buildDOM() {
     const {pages} = this.props
-    const pageSize = pages ? pages.size : 0
+    const pageSize = pages ? pages.length : 0
 
     if (pageSize) {
       return getRoutes()
