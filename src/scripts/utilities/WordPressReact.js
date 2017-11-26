@@ -3,13 +3,10 @@ import postTypeSingle     from 'hoc/postTypeSingle'
 import postTypeList       from 'hoc/postTypeList'
 import postTypeContainer  from 'hoc/postTypeContainer'
 import fetchPostType      from 'hoc/fetchPostType'
-import { Map, List }      from 'immutable'
 
 import { 
   API_URL,
   TITLE_PREFIX,
-  PATH_PREFIX,
-  APP_URL,
 } from 'Constants'
 
 export const api = ({endpoint, page, perPage, id}) => {
@@ -20,10 +17,6 @@ export const api = ({endpoint, page, perPage, id}) => {
   URL = perPage ? `${URL}${sep}per_page=${perPage}` : URL
 
   return axios.get(URL)  
-}
-
-export const setTitle = title => {
-  document.title = `React WP - ${title}`
 }
 
 export const createTitle = title => TITLE_PREFIX + title
