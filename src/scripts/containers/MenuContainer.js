@@ -1,9 +1,11 @@
 import { APP_URL } from 'Constants'
 import Menu from 'components/Menu'
 
+import { flow, sortBy } from 'Utils'
+
 const MenuContainer = props => {
   const getMenuItems = () => {
-    return Utils.flow(
+    return flow(
       getMainMenu,
       sortMenuItems,
       addURLToMenuItems
@@ -17,7 +19,7 @@ const MenuContainer = props => {
   }
 
   const sortMenuItems = (menuItems) => {
-    return Utils.sortBy(menuItems, 'menu_order', true)
+    return sortBy(menuItems, 'menu_order', true)
   }
 
   const addURLToMenuItems = (menuItems) => {

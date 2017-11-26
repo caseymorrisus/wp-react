@@ -1,31 +1,15 @@
-const Utilities = {
-  def(x) {
-    return typeof x !== 'undefined'
-  },
+export const def = x => typeof x !== 'undefined'
 
-  flow: (...fns) => initial => fns.reduce((result, fn) => {
-    return fn(result)
-  }, initial),
+export const flow = (...fns) => initial => fns.reduce((result, fn) => {
+  return fn(result)
+}, initial)
 
-  sortBy(array, prop, reverse = false) {
-    return reverse
-      ? [...array].sort((a,b) => b[prop] - a[prop])
-      : [...array].sort((a,b) => a[prop] - b[prop])
-  },
+export const sortBy = (array, prop, reverse = false) => reverse
+  ? [...array].sort((a,b) => b[prop] - a[prop])
+  : [...array].sort((a,b) => a[prop] - b[prop])
 
-  isDevelopment() {
-    return !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  },
+export const isDevelopment = () => !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
-  isProduction() {
-    return !this.isDevelopment()
-  },
+export const isProduction = () => !isDevelopment()
 
-  pluralize(str) {
-    return `${str}s`
-  },
-
-}
-
-module.exports = Utilities
-module.exports.default = Utilities
+export const pluralize = str => `${str}s`

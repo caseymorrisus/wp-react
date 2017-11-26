@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
+import { pluralize } from 'Utils'
 
 const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
   class PostTypeSingleTemplate extends React.PureComponent {
     componentDidMount() {
       const slug = this.props.match.params.slug
-      const plural = Utils.pluralize(type)
+      const plural = pluralize(type)
 
       const routes = WPReact.getRestRoutes()
 
@@ -42,7 +43,7 @@ const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
   }
 
   const mapStateToProps = state => { 
-    const plural = Utils.pluralize(type)
+    const plural = pluralize(type)
 
     return {
       [plural]: state[plural].get(plural),
