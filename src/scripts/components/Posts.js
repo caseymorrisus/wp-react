@@ -1,6 +1,7 @@
 import { fetchType } from 'reducers/posts'
+import { createPostType } from 'WPReact'
 
-export default WPReact.createPostType({
+export default createPostType({
   type: 'posts',
   fetch: fetchType
 })

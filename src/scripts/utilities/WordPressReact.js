@@ -12,68 +12,46 @@ import {
   APP_URL,
 } from 'Constants'
 
-const WordPressReact = {
-  APP_URL,
-  PATH_PREFIX,
+export const api = ({endpoint, page, perPage, id}) => {
+  const sep = page ? '&' : '?'
+  let URL = `${API_URL}/${endpoint}`
+  URL = id ? `${URL}/${id}` : URL
+  URL = page ? `${URL}?page=${page}` : URL
+  URL = perPage ? `${URL}${sep}per_page=${perPage}` : URL
 
-  api({endpoint, page, perPage, id}) {
-    const sep = page ? '&' : '?'
-    let URL = `${API_URL}/${endpoint}`
-    URL = id ? `${URL}/${id}` : URL
-    URL = page ? `${URL}?page=${page}` : URL
-    URL = perPage ? `${URL}${sep}per_page=${perPage}` : URL
-
-    return axios.get(URL)
-  },
-
-  setTitle(title) {
-    document.title = `React WP - ${title}`
-  },
-
-  createTitle(title) {
-    return TITLE_PREFIX + title
-  },
-
-  getGlobal(key) {
-    return global.hasOwnProperty(key) ? global[key] : null
-  },
-
-  getRestRoutes() {
-    return this.getGlobal('WP_REST_ROUTES')
-  },
-
-  getRestMenus(x) {
-    return this.getGlobal('WP_REST_MENUS')
-  },
-
-  getRestInfo() {
-    return this.getGlobal('WP_REST_INFO')
-  },
-
-  getRestSettings() {
-    return this.getGlobal('WP_REST_SETTINGS')
-  },
-
-  createPostType({
-    FetchType = fetchPostType,
-    Single = postTypeSingle,
-    List = postTypeList,
-    Container = postTypeContainer,
-    type,
-    fetch
-  }) {
-    return FetchType(
-      Container(
-        List(
-          Single(),
-          type
-        ),
-        type
-      ),
-      fetch
-    )
-  },
+  return axios.get(URL)  
 }
 
-module.exports = WordPressReact
-module.exports.default = WordPressReact
+export const setTitle = title => {
+  document.title = `React WP - ${title}`
+}
+
+export const createTitle = title => TITLE_PREFIX + title
+
+export const getGlobal = key => global.hasOwnProperty(key) ? global[key] : null
+
+export const getRestRoutes = () => getGlobal('WP_REST_ROUTES')
+
+export const getRestMenus = () => getGlobal('WP_REST_MENUS')
+
+export const getRestInfo = () => getGlobal('WP_REST_INFO')
+
+export const getRestSettings = () => getGlobal('WP_REST_SETTINGS')
+
+export const createPostType = ({
+  FetchType = fetchPostType,
+  Single = postTypeSingle,
+  List = postTypeList,
+  Container = postTypeContainer,
+  type,
+  fetch  
+}) => FetchType(
+  Container(
+    List(
+      Single(),
+      type
+    ),
+    type
+  ),
+  fetch
+)

@@ -1,5 +1,5 @@
 import { Map, List } from 'immutable'
-import WPReact from '../utilities/WordPressReact'
+import { api } from 'WPReact'
 
 const createPostTypeReducer = ({type, actions}) => {
   const initialState = Map({
@@ -76,7 +76,7 @@ const createPostTypeReducer = ({type, actions}) => {
   const fetchType = (page, perPage, callback) => dispatch => {
     dispatch(typeRequest())
 
-    WPReact.api({endpoint: type, page, perPage})
+    api({endpoint: type, page, perPage})
       .then(({data}) => {
         if (callback) callback(data)
         dispatch(typeRequestSuccess(data))
@@ -94,7 +94,7 @@ const createPostTypeReducer = ({type, actions}) => {
     if (findById) {
       dispatch(typeSingleSuccess(findById))
     } else {
-      WPReact.api({endpoint: type, id})
+      api({endpoint: type, id})
         .then(({data}) => {
           if (callback) callback(data)
           dispatch(typeSingleSuccess(data))

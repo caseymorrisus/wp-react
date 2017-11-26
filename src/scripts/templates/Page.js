@@ -1,5 +1,6 @@
 import { connect }        from 'react-redux'
 import { getPageBySlug }  from 'reducers/pages'
+import { createTitle }    from 'WPReact'
 
 const Page = ({pages, location: {pathname}}) => {
   const page = getPageBySlug(pages, pathname.slice(1, -1))
@@ -14,7 +15,7 @@ const Page = ({pages, location: {pathname}}) => {
   }
 
   return (
-    <DocumentTitle title={WPReact.createTitle(title.rendered)}>
+    <DocumentTitle title={createTitle(title.rendered)}>
       <div className="page">
         <h2 className="title">{title.rendered}</h2>
         <div className="content" dangerouslySetInnerHTML={{ __html: content.rendered }} />

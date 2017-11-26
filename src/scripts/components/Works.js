@@ -1,4 +1,5 @@
 import { fetchType } from 'reducers/works'
+import { createPostType } from 'WPReact'
 import { Link } from 'react-router-dom'
 
 const WorkSingle = () => ({data}) => (
@@ -7,7 +8,7 @@ const WorkSingle = () => ({data}) => (
   </div>
 )
 
-export default WPReact.createPostType({
+export default createPostType({
   Single: WorkSingle,
   type: 'works',
   fetch: fetchType

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { pluralize } from 'Utils'
+import { getRestRoutes } from 'WPReact'
 
 const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
   class PostTypeSingleTemplate extends React.PureComponent {
@@ -7,7 +8,7 @@ const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
       const slug = this.props.match.params.slug
       const plural = pluralize(type)
 
-      const routes = WPReact.getRestRoutes()
+      const routes = getRestRoutes()
 
       const valueToCheck = useSingle ? type : plural
       const getSingle = route => route.type === valueToCheck && route.slug === slug

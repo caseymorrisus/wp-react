@@ -1,7 +1,7 @@
 import { APP_URL } from 'Constants'
-import Menu from 'components/Menu'
-
 import { flow, sortBy } from 'Utils'
+import { getRestMenus } from 'WPReact'
+import Menu from 'components/Menu'
 
 const MenuContainer = props => {
   const getMenuItems = () => {
@@ -9,7 +9,7 @@ const MenuContainer = props => {
       getMainMenu,
       sortMenuItems,
       addURLToMenuItems
-    )(WPReact.getRestMenus())
+    )(getRestMenus())
   }
 
   const getMainMenu = (menus) => {
@@ -24,7 +24,7 @@ const MenuContainer = props => {
 
   const addURLToMenuItems = (menuItems) => {
     return menuItems.map(item => {
-      item.to = item.url.replace(WPReact.APP_URL, '')
+      item.to = item.url.replace(APP_URL, '')
       return item
     })
   }

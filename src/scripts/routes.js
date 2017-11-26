@@ -1,3 +1,5 @@
+import { getRestSettings, getRestRoutes} from 'WPReact'
+import { PATH_PREFIX } from 'Constants'
 import templates from './templates'
 import Header from 'components/Header'
 import {
@@ -37,8 +39,8 @@ export const getCustomPostTypes = (postTypes) => {
 }
 
 export const buildRoutes = () => {
-  const settings = WPReact.getRestSettings()
-  const routes = WPReact.getRestRoutes()
+  const settings = getRestSettings()
+  const routes = getRestRoutes()
 
   // routes for all pages eg: /blog, /projects, /contact
   const pageRoutes = buildPageRoutes(routes)
@@ -75,7 +77,7 @@ export const buildRoutes = () => {
 }
 
 export const getRoutes = () => (
-  <Router basename={WPReact.PATH_PREFIX}>
+  <Router basename={PATH_PREFIX}>
     <div>
       <Header />
       <Switch>

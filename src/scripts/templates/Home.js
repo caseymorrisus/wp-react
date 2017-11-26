@@ -1,5 +1,7 @@
+import { createTitle } from 'WPReact'
+
 const Home = props => (
-  <DocumentTitle title={WPReact.createTitle('Home')}>
+  <DocumentTitle title={createTitle('Home')}>
     <div className="home">
       <h2>Home Page</h2>
       <p>This is the front page.</p>

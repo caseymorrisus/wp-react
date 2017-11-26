@@ -1,7 +1,8 @@
+import { createTitle } from 'WPReact'
 import Projects from 'components/Projects'
 
 const ProjectsTemplate = props => (
-  <DocumentTitle title={WPReact.createTitle('Projects')}>
+  <DocumentTitle title={createTitle('Projects')}>
     <Projects
       page={props.match.params.page}
       perPage={5}
