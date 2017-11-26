@@ -1,27 +1,17 @@
-import Loading          from 'components/Loading'
-import { connect }      from 'react-redux'
-import { getRoutes }    from './routes'
-
 import { fetchType as fetchPages } from 'reducers/pages'
+import { connect } from 'react-redux'
+import { Routes } from './routes'
+import addLoader from 'hoc/addLoader'
+
+const RoutesWithLoader = addLoader(Routes)
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchPages()
   }
 
-  buildDOM() {
-    const {pages} = this.props
-    const pageSize = pages ? pages.length : 0
-
-    if (pageSize) {
-      return getRoutes()
-    } else {
-      return (<Loading message="Loading Application..."/>)
-    }
-  }
-
   render() {
-    return this.buildDOM()
+    return <RoutesWithLoader loading={this.props.pages.length > 0} />
   }
 }
 
