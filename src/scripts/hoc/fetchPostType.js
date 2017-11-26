@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
 
-const fetchPostType = (PostTypeContainer, fetchType) => {
-  class FetchPostType extends React.Component {
+const fetchPostType = (PostTypeContainer, fetchType, type) => {
+  class FetchPostType extends React.PureComponent {
     componentDidMount() {
-      this.props.fetchType(this.props.page, this.props.perPage)
+      if (this.props.posts.length <= 0) {
+        this.props.fetchType(this.props.page, this.props.perPage)
+      }
     }
 
     render() {
@@ -13,7 +15,11 @@ const fetchPostType = (PostTypeContainer, fetchType) => {
     }
   }
 
-  return connect(null, {fetchType})(FetchPostType)
+  const mapStateToProps = state => ({
+    posts: state[type][type]
+  })
+
+  return connect(mapStateToProps, {fetchType})(FetchPostType)
 }
 
 fetchPostType.propTypes = {
