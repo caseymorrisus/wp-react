@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { getPageBySlug } from 'reducers/pages'
 import { createTitle } from 'WPReact'
+import DocumentTitle from 'react-document-title'
 
 const SamplePage = ({pages}) => {
   const page = getPageBySlug(pages, 'sample-page')

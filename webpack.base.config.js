@@ -58,8 +58,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       ReactDOM: 'react-dom',
-      PropTypes: 'prop-types',
-      DocumentTitle: 'react-document-title'
+      PropTypes: 'prop-types'
     }),
 
     new HtmlWebpackPlugin({

@@ -1,4 +1,5 @@
 import { createTitle } from 'WPReact'
+import DocumentTitle from 'react-document-title'
 
 const Home = props => (
   <DocumentTitle title={createTitle('Home')}>

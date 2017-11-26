@@ -1,5 +1,6 @@
 import { createTitle } from 'WPReact'
 import Works from 'components/Works'
+import DocumentTitle from 'react-document-title'
 
 const WorksTemplate = props => (
   <DocumentTitle title={createTitle('Works')}>

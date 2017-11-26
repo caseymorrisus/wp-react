@@ -1,6 +1,7 @@
 import { connect }        from 'react-redux'
 import { getPageBySlug }  from 'reducers/pages'
 import { createTitle }    from 'WPReact'
+import DocumentTitle from 'react-document-title'
 
 const Page = ({pages, location: {pathname}}) => {
   const page = getPageBySlug(pages, pathname.slice(1, -1))

@@ -1,4 +1,5 @@
 import { createTitle, getRestSettings } from 'WPReact'
+import DocumentTitle from 'react-document-title'
 import Posts from 'components/Posts'
 
 const BlogTemplate = props => (
