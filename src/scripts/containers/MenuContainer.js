@@ -1,26 +1,21 @@
 import { APP_URL } from 'Constants'
-import { flow, sortBy } from 'Utils'
+import { sortBy } from 'Utils'
 import { getRestMenus } from 'WPReact'
+import { compose } from 'redux'
 import Menu from 'components/Menu'
 
 const MenuContainer = props => {
-  const getMenuItems = () => {
-    return flow(
-      getMainMenu,
-      sortMenuItems,
-      addURLToMenuItems
-    )(getRestMenus())
-  }
+  const getMenuItems = () => compose(
+    addURLToMenuItems,
+    sortMenuItems,
+    getMainMenu
+  )(getRestMenus())
 
-  const getMainMenu = (menus) => {
-    return menus.find(menu => {
-      return menu.slug === 'main-menu'
-    }).items
-  }
+  const getMainMenu = (menus) => menus.find(menu => {
+    return menu.slug === 'main-menu'
+  }).items
 
-  const sortMenuItems = (menuItems) => {
-    return sortBy(menuItems, 'menu_order', true)
-  }
+  const sortMenuItems = (menuItems) => sortBy(menuItems, 'menu_order', true)
 
   const addURLToMenuItems = (menuItems) => {
     return menuItems.map(item => {
