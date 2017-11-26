@@ -16,19 +16,13 @@ const postTypeContainer = (PostTypeList, type) => {
     addDefault(DefaultComponent),
   )(PostTypeList)
 
-  class PostTypeContainer extends React.PureComponent {
-    render() {
-      const {isFetching, postSize, hasError} = this.props
-
-      return(
-        <EnhancedPostTypeList
-          loading={isFetching && !postSize}
-          useDefault={isFetching || postSize || hasError}
-          {...this.props}
-        />
-      )
-    }
-  }
+  const PostTypeContainer = props => (
+    <EnhancedPostTypeList
+      loading={props.isFetching && !props.postSize}
+      useDefault={props.isFetching || props.postSize || props.hasError}
+      {...props}
+    />
+  )
 
   const mapStateToProps = state => ({
     posts: state[type][type],  
