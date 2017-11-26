@@ -1,19 +1,30 @@
 import { connect } from 'react-redux'
 import addLoader from 'hoc/addLoader'
+import addDefault from 'hoc/addDefault'
+import addError from 'hoc/addError'
+import Loading from 'components/Loading'
+
+import { compose } from 'redux'
 
 const postTypeContainer = (PostTypeList, type) => {
-  const PostTypeListWithLoader = addLoader(`Loading ${type}`)(PostTypeList)
+  const DefaultComponent = props => <div className={`${type}-default`}>No {type} to display.</div>
+  const ErrorComponent = ({errorMsg}) => <div className={`${type}-error`}>{errorMsg}</div>
+
+  const EnhancedPostTypeList = compose(
+    addLoader(`Loading ${type}`),
+    addError(ErrorComponent),
+    addDefault(DefaultComponent),
+  )(PostTypeList)
 
   class PostTypeContainer extends React.PureComponent {
     render() {
+      const {isFetching, postSize, hasError} = this.props
+
       return(
-        <PostTypeListWithLoader
-          posts={this.props.posts}
-          isFetching={this.props.isFetching}
-          error={this.props.errorMsg}
-          hasError={this.props.hasError}
-          errorMsg={this.props.errorMsg}
-          loading={this.props.isFetching && !this.props.postSize}
+        <EnhancedPostTypeList
+          loading={isFetching && !postSize}
+          useDefault={isFetching || postSize || hasError}
+          {...this.props}
         />
       )
     }
