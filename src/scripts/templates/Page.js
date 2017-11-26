@@ -26,7 +26,7 @@ const Page = ({pages, location: {pathname}}) => {
 }
 
 const mapStateToProps = state => ({
-  pages: state.pages.get('pages')
+  pages: state.pages.pages
 })
 
 export default connect(mapStateToProps)(Page)

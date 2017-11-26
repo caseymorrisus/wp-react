@@ -26,7 +26,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  pages: state.pages.get('pages')
+  pages: state.pages.pages
 })
 
 export default connect(mapStateToProps, { fetchPages })(App)

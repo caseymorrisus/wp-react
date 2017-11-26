@@ -1,45 +1,50 @@
-import { Map, List } from 'immutable'
 import { api } from 'WPReact'
 
+const merge = (obj1, obj2) => Object.assign({}, obj1, obj2)
+
 const createPostTypeReducer = ({type, actions}) => {
-  const initialState = Map({
-    [type]: List(),
+  const initialState = {
+    [type]: [],
     [type.slice(0, -1)]: null,
     isFetching: false,
     hasError: false,
     errorMsg: null
-  })
+  }
 
   const reducer = (state = initialState, action = {}) => {
     switch(action.type) {
       case actions.REQUEST:
-        return state.set('isFetching', true)
+        return merge(state, {
+          isFetching: true
+        })
       case actions.SUCCESS:
-        return state.merge(Map({
+        return merge(state, {
           isFetching: false,
           hasError: false,
-          [type]: state.get(type).merge(List(action.data))
-        }))
+          [type]: action.data
+        })
       case actions.FAILURE:
-        return state.merge(Map({
+        return merge(state, {
           isFetching: false,
           hasError: true,
           errorMsg: action.error
-        }))
+        })
       case actions.single.REQUEST:
-        return state.set('isFetching', true)
+        return merge(state, {
+          isFetching: true
+        })
       case actions.single.SUCCESS:
-        return state.merge(Map({
+        return merge(state, {
           isFetching: false,
           hasError: false,
           [type.slice(0, -1)]: action.data
-        }))
+        })
       case actions.single.FAILURE:
-        return state.merge(Map({
+        return merge(state, {
           isFetching: false,
           hasError: true,
           errorMsg: action.error
-        }))
+        })
       default:
         return state
     }

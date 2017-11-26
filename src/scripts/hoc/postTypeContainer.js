@@ -16,10 +16,10 @@ const postTypeContainer = (PostTypeList, type) => {
   }
 
   const mapStateToProps = state => ({
-    posts: state[type].get(type),
-    isFetching: state[type].get('isFetching'),
-    errorMsg: state[type].get('errorMsg'),
-    hasError: state[type].get('hasError')
+    posts: state[type][type],  
+    isFetching: state[type].isFetching,
+    errorMsg: state[type].errorMsg,
+    hasError: state[type].hasError
   })
 
   return connect(mapStateToProps)(PostTypeContainer)

@@ -47,8 +47,8 @@ const postTypeSingleTemplate = (fetchSingleById, {type, useSingle}) => {
     const plural = pluralize(type)
 
     return {
-      [plural]: state[plural].get(plural),
-      [type]: state[plural].get(type)
+      [plural]: state[plural][plural],
+      [type]: state[plural][type]
     }
   }
 

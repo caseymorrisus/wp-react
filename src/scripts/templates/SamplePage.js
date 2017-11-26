@@ -20,7 +20,7 @@ const SamplePage = ({pages}) => {
 }
 
 const mapStateToProps = state => ({
-  pages: state.pages.get('pages')
+  pages: state.pages.pages
 })
 
 export default connect(mapStateToProps)(SamplePage)

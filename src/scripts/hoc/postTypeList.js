@@ -7,7 +7,7 @@ const postTypeList = (PostTypeSingle, type) => props => {
 
   const defaultDOM = <div className={type + "-default"}>No {type} to display.</div>
 
-  const postsDOM = posts ? posts.map(post => (
+  const postsDOM = posts ? posts.map((post, i) => (
     <PostTypeSingle 
       data={post}
       key={post.id}
@@ -15,7 +15,7 @@ const postTypeList = (PostTypeSingle, type) => props => {
     />
   )) : null
 
-  const postSize = posts ? posts.size : 0
+  const postSize = posts ? posts.length : 0
 
   const createLoadingDOM = () => isFetching && !postSize ? loadingDOM : null
   const createErrorDOM = () => !isFetching && hasError ? errorDOM : null
