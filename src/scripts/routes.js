@@ -76,7 +76,7 @@ export const buildRoutes = () => {
   ))
 }
 
-export const getRoutes = () => (
+export const Routes = () => (
   <Router basename={PATH_PREFIX}>
     <div>
       <Header />
